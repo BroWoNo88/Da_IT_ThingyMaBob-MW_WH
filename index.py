@@ -9,9 +9,10 @@ def check_heart_rate(heart_rate):
     change = random.randint(-5, 5) 
     if heart_rate < 80:
         change += 2.0 
+        heart_rate += change
     elif heart_rate > 80:
         change -= 2.0
-    heart_rate += change
+        heart_rate += change
 
 while True:
     check_heart_rate
