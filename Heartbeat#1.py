@@ -15,7 +15,7 @@ def check_heart_rate(heart_rate):
         heart_rate += change
 
 while True:
-    check_heart_rate
+    check_heart_rate()
     print("Resting Heart rate is", round(heart_rate), "BPM")
     print(" \n \n \n \n ") 
     led.on()
