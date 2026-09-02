@@ -23,5 +23,5 @@ while True:
     time.sleep(0.05)
     buzz.off()
     led.off()
-    time.sleep(heart_rate/60)
+    time.sleep(heart_rate/60) #currently has a check based on heart rate, so bad
     print heart rate
