@@ -17,7 +17,7 @@ def check_heart_rate(heart_rate):
 while True:
     check_heart_rate()
     print("Resting Heart rate is", round(heart_rate), "BPM")
-    print(" \n \n \n \n ") 
+    print(" \n \n \n \n \n \n \n \n \n \n \n \n ")
     led.on()
     buzz.on()
     time.sleep(0.05)
