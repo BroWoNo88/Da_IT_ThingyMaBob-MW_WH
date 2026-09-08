@@ -9,7 +9,7 @@ red = Pin(2, Pin.OUT)
 green = Pin(3, Pin.OUT)
 def check_heart_rate():
     global heart_rate
-    change = random.randint(-10, 50) 
+    change = random.randint(-10, 10) 
     if heart_rate < 80:
         change += 2.0 
         heart_rate += change
