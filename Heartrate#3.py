@@ -20,17 +20,17 @@ def check_heart_rate():
 
 while True:
     check_heart_rate()
-    print("Resting Heart rate is", round(heart_rate), "BPM")
-    print(" \n \n \n \n \n \n \n \n \n \n \n \n ")
-    led.on()
-    buzz.on()
-    time.sleep(0.05)
-    buzz.off()
-    led.off()
-    time.sleep(60/heart_rate) #currently has a check based on heart rate, so bad`
     if heart_rate > 110 or heart_rate < 50:
         red.on()
         green.off()
     else:
         red.off()
         green.on()
+    print("Resting Heart rate is", round(heart_rate), "BPM")
+    led.on()
+    buzz.on()
+    time.sleep(0.05)
+    buzz.off()
+    led.off()
+    time.sleep(60/heart_rate) #currently has a check based on heart rate, so bad`
+
