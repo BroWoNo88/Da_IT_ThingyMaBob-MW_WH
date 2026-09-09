@@ -1,4 +1,3 @@
-# matthews heart beat thingy numba 1
 import time
 import random
 from machine import Pin
