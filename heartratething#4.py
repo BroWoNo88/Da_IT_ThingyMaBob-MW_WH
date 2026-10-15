@@ -19,8 +19,8 @@ def check_heart_rate():
     else:
         heart_rate += change
     # i mean we gotta keep it realistic sooo
-    if heart_rate < 0:
-        heart_rate = 0
+    if heart_rate < 1:
+        heart_rate = 1
     elif heart_rate > 250:
         heart_rate = 250
 
