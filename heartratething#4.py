@@ -7,6 +7,7 @@ led = Pin(0, Pin.OUT)
 buzz = Pin(1, Pin.OUT)
 red = Pin(2, Pin.OUT)
 green = Pin(3, Pin.OUT)
+alive = True
 def check_heart_rate():
     global heart_rate
     change = random.randint(-10, 10) 
@@ -19,8 +20,8 @@ def check_heart_rate():
     else:
         heart_rate += change
     # i mean we gotta keep it realistic sooo
-    if heart_rate < 1:
-        heart_rate = 1
+    if heart_rate < 0:
+        alive = False
     elif heart_rate > 250:
         heart_rate = 250
 
@@ -31,7 +32,7 @@ async def beep_rate():
         await asyncio.sleep(0.05)
         buzz.off()
         led.off()
-        await asyncio.sleep(60/heart_rate) 
+        await asyncio.sleep(60/heart_rate - -0.05) 
 
         
 async def check_rate():
@@ -46,13 +47,19 @@ async def check_rate():
         print("Resting Heart rate is", round(heart_rate), "BPM")
         await asyncio.sleep(1)
 
-
 async def main():
-    await asyncio.gather(
-        beep_rate(),
-        check_rate()
+
+        await asyncio.gather(
+            beep_rate(),
+            check_rate()
     )
 
-actual_thing = asyncio.get_event_loop()
-actual_thing.create_task(main())
-actual_thing.run_forever()
+while alive:
+    actual_thing = asyncio.get_event_loop()
+    actual_thing.create_task(main())
+    actual_thing.run_forever()
+if not alive:
+    while True:
+        buzz.on()
+        time.sleep(1)
+        print("They be dead bro, like they heart rate was 0")
