@@ -1,7 +1,7 @@
 import time
 import random
 from machine import Pin
-import asyncio
+import asyncio # I hate asyncio with my whole heart
 heart_rate = 80
 led = Pin(0, Pin.OUT)
 buzz = Pin(1, Pin.OUT)
@@ -9,8 +9,8 @@ red = Pin(2, Pin.OUT)
 green = Pin(3, Pin.OUT)
 alive = True
 def check_heart_rate():
-    global heart_rate
-    change = random.randint(-10, 10) 
+    global heart_rate, alive
+    change = random.randint(-500, 5) 
     if heart_rate < 80:
         change += 2 
         heart_rate += change
@@ -20,24 +20,27 @@ def check_heart_rate():
     else:
         heart_rate += change
     # i mean we gotta keep it realistic sooo
-    if heart_rate < 0:
+    if heart_rate <= 0:
+        heart_rate = 0
         alive = False
     elif heart_rate > 250:
         heart_rate = 250
-
 async def beep_rate():
-    while True:
+    while alive:
+        if heart_rate <= 0:
+            break
         led.on()
         buzz.on()
         await asyncio.sleep(0.05)
         buzz.off()
         led.off()
-        await asyncio.sleep(60/heart_rate - -0.05) 
-
-        
+        delay = (60 / heart_rate) - 0.05 if heart_rate > 0 else 1
+        await asyncio.sleep(max(0.01, delay)) # ASYNCIO MAKES ME CHANGE THE SLEEP COMMAND OMG
 async def check_rate():
-    while True:
+    while alive:
         check_heart_rate()
+        if not alive:
+            break
         if heart_rate > 110 or heart_rate < 50:
             red.on()
             green.off()
@@ -46,20 +49,21 @@ async def check_rate():
             green.on()
         print("Resting Heart rate is", round(heart_rate), "BPM")
         await asyncio.sleep(1)
-
 async def main():
-
-        await asyncio.gather(
+    await asyncio.gather(
             beep_rate(),
             check_rate()
     )
-
-while alive:
-    actual_thing = asyncio.get_event_loop()
-    actual_thing.create_task(main())
-    actual_thing.run_forever()
+try:
+    asyncio.run(main())
+finally:
+    led.off()
+    green.off()
 if not alive:
+    red.on()
     while True:
-        buzz.on()
-        time.sleep(1)
+        buzz.on() # Flatline (just to annoy classmates)
+        time.sleep(0) #idk but the code dont work without it dont ask me
         print("They be dead bro, like they heart rate was 0")
+        time.sleep(1)
+
