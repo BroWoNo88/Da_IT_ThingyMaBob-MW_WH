@@ -16,7 +16,7 @@ button_state = 1
 
 def check_heart_rate():
     global heart_rate, alive
-    change = random.randint(-500, 5) 
+    change = random.randint(-5, 5) 
     if heart_rate < 80:
         change += 2 
         heart_rate += change
