@@ -12,10 +12,7 @@ button = Pin(4, Pin.IN, Pin.PULL_UP)
 
 alive = True
 sound = False  # Beeping is off defacto
-button_state = 1 
-
-def check_heart_rate():
-    global heart_rate, alive
+button_state = 1                l heart_rate, alive
     change = random.randint(-5, 5) 
     if heart_rate < 80:
         change += 2 
@@ -37,10 +34,8 @@ async def beep_rate():
         if heart_rate <= 0:
             break
         led.on()
-        # So the button actually does smth
         if sound:
             buzz.on()
-            
         await asyncio.sleep(0.05)
         buzz.off()
         led.off()
@@ -60,12 +55,10 @@ async def check_rate():
             green.on()
         print("Resting Heart rate is", round(heart_rate), "BPM")
         await asyncio.sleep(1)
-        
 async def button_check():
     global sound, button_state
     while alive:
-        current_button_state = button.value() 
-        
+        current_button_state = button.value()
         if button_state == 1 and current_button_state == 0:
             sound = not sound
           
@@ -74,8 +67,8 @@ async def button_check():
                 
             await asyncio.sleep(0.2) # Debounce delay inside asyncio idk i got it from stack overflow
             
-        button_state = current_button_state 
-        await asyncio.sleep(0.01) # let other stuffs happen
+        button_state = current_button_state
+        await asyncio.sleep(0.01) # let other stuff happen
 
 async def main():
     await asyncio.gather(
