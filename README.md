@@ -12,6 +12,3 @@ Heart beat wiring design 3;
 <img width="2230" height="1488" alt="Photo on 5-11-2026 at 12 44" src="https://github.com/user-attachments/assets/8e23621f-cbeb-40c6-9a7b-6d7c28124664" />
 Heart Beat wiring design 4 (final)
 <img width="2230" height="1488" alt="Photo on 5-11-2026 at 12 43" src="https://github.com/user-attachments/assets/e0a2e822-44a2-483b-b1e9-e00028341798" />
-
-Video of explaining how the design works;
-<img width="640" height="360" alt="C3925BDD-6343-4C37-AC9C-A12E3942CE2C_4_5005_c" src="https://github.com/user-attachments/assets/034c8021-ff9a-4633-b5d4-0f054c33df9d" />
