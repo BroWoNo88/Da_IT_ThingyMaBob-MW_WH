@@ -1,9 +1,9 @@
-import time 
+import time
 import random 
 from machine import Pin 
 import asyncio # I hate asyncio with my whole heart 
 heart_rate = 80 
-led = Pin(0, Pin.OUT) 
+led = Pin(0, Pin.OUT) #all of the defining things
 buzz = Pin(1, Pin.OUT) 
 red = Pin(2, Pin.OUT) 
 green = Pin(3, Pin.OUT) 
@@ -11,7 +11,7 @@ button = Pin(4, Pin.IN, Pin.PULL_UP)
 alive = True 
 sound = False # Beeping is off defacto 
 button_state = 1 
-def check_heart_rate():
+def check_heart_rate(): #this checks and changes the heartrate
  global heart_rate, alive 
  change = random.randint(-5, 5) 
  if heart_rate < 80: 
@@ -27,7 +27,7 @@ def check_heart_rate():
   alive = False 
  elif heart_rate > 250: 
   heart_rate = 250 
-async def beep_rate(): 
+async def beep_rate(): #this is the beeping to represent the heartrate
  while alive: 
   if heart_rate <= 0: 
    break 
@@ -39,7 +39,7 @@ async def beep_rate():
   led.off() 
   delay = (60 / heart_rate) - 0.05 if heart_rate > 0 else 1 
   await asyncio.sleep(max(0.01, delay)) # ASYNCIO MAKES ME CHANGE THE SLEEP COMMAND OMG 
-async def check_rate(): 
+async def check_rate(): # Things that happen once per second
  while alive: 
   check_heart_rate() 
   if not alive: 
@@ -52,7 +52,7 @@ async def check_rate():
    green.on() 
   print("Resting Heart rate is", round(heart_rate), "BPM") 
   await asyncio.sleep(1) 
-async def button_check(): 
+async def button_check(): #see if the button was clicked
  global sound, button_state 
  while alive: 
   current_button_state = button.value() 
@@ -61,9 +61,9 @@ async def button_check():
    if not sound: 
     buzz.off() 
    await asyncio.sleep(0.2) # Debounce delay inside asyncio idk i got it from stack overflow 
-  button_state = current_button_state 
+  button_state = current_button_state #change button state
   await asyncio.sleep(0.01) # let other stuff happen 
-async def main(): 
+async def main(): #what makes the code actually go
  await asyncio.gather( 
  beep_rate(), 
  check_rate(), 
