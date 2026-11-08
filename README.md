@@ -16,5 +16,3 @@ Heart Beat wiring design 4 (final)<br>
 Credit to stack overflow and w3 schools during acclimation of coding styles and how to do certain things
 
 
-For the WILL PUT YOUR STUFFS HERE
-
