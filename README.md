@@ -13,6 +13,16 @@ Heart beat wiring design 3;<br>
 Heart Beat wiring design 4 (final)<br>
 <img width="223" height="148" alt="Photo on 5-11-2026 at 12 43" src="https://github.com/user-attachments/assets/e0a2e822-44a2-483b-b1e9-e00028341798" /> <br>
 
+
+Raspberry Pi Pico W
+Buzzer
+Button
+Potentiometer
+Red LED
+RGB LED
+Lots of wires
+
+
 Credit to stack overflow and w3 schools during acclimation of coding styles and how to do certain things
 
 
